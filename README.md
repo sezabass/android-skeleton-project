@@ -1,1 +1,1 @@
-# freenow-takehome
+# skeleton-project
