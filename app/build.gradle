@@ -3,10 +3,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion versions.compileSdk
-    buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.skeleton.project"
+        compileSdk versions.compileSdk
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
         versionCode 1
@@ -32,11 +31,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -55,9 +54,9 @@ dependencies {
     //region dagger
     implementation libraries.dagger
     implementation libraries.daggerSupport
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation libraries.constraint
     kapt libraries.daggerCompiler
     kapt libraries.daggerProcessor
     //endregion
@@ -71,7 +70,7 @@ dependencies {
 
     //region tests
     libGroups.test.each { testImplementation it.value }
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation testLibraries.ext
+    androidTestImplementation testLibraries.espresso
     //endregion
 }
